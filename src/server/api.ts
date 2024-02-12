@@ -392,7 +392,7 @@ export const configureRouter = ({
     ctx.body = body;
   });
 
-  const updatePlayerMetadata = async (ctx: Koa.Context) => {
+  const updatePlayerMetadata = async (ctx) => {
     const matchID = ctx.params.id;
     const playerID = ctx.request.body.playerID;
     const credentials = ctx.request.body.credentials;

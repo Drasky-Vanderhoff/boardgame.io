@@ -17,7 +17,7 @@ import type {
   TransportData,
 } from '../../master/master';
 import { getFilterPlayerView } from '../../master/filter-player-view';
-import type { Game, Server } from '../../types';
+import type { Game } from '../../types';
 import type { GenericPubSub } from './pubsub/generic-pub-sub';
 import type { IntermediateTransportData } from '../../master/master';
 import { InMemoryPubSub } from './pubsub/in-memory-pub-sub';
@@ -148,11 +148,7 @@ export class SocketIO {
     this.pubSub.unsubscribeAll(getPubSubChannelId(matchID));
   }
 
-  init(
-    app: Server.App & { _io?: IOTypes.Server },
-    games: Game[],
-    origins: CorsOptions['origin'] = []
-  ) {
+  init(app, games: Game[], origins: CorsOptions['origin'] = []) {
     const io = new IO({
       ioOptions: {
         pingTimeout: PING_TIMEOUT,
