@@ -8,8 +8,8 @@
 
 <p align="center">
 <a href="https://www.npmjs.com/package/boardgame.io"><img src="https://badge.fury.io/js/boardgame.io.svg" alt="npm version" /></a>
-<a href="https://github.com/boardgameio/boardgame.io/actions?query=workflow%3ATests"> <img src="https://github.com/boardgameio/boardgame.io/workflows/Tests/badge.svg" alt='Build Status'></a>
-<a href='https://coveralls.io/github/boardgameio/boardgame.io?branch=main'><img src='https://coveralls.io/repos/github/boardgameio/boardgame.io/badge.svg?branch=main' alt='Coverage Status' /></a>
+<a href="https://github.com/Drasky-Vanderhoff/boardgame.io/actions?query=workflow%3ATests"> <img src="https://github.com/Drasky-Vanderhoff/boardgame.io/workflows/Tests/badge.svg" alt='Build Status'></a>
+<a href='https://coveralls.io/github/Drasky-Vanderhoff/boardgame.io?branch=main'><img src='https://coveralls.io/repos/github/Drasky-Vanderhoff/boardgame.io/badge.svg?branch=main' alt='Coverage Status' /></a>
 <a href="https://gitter.im/boardgame-io"><img src="https://badges.gitter.im/boardgame-io.svg" alt="Gitter" /></a>
 </p>
 
