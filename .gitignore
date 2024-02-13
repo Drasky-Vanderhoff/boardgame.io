@@ -13,3 +13,5 @@ npm
 .vscode/*
 .rpt2_cache/
 .rush/
+# stryker temp files
+.stryker-tmp
