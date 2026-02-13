@@ -1,5 +1,12 @@
 import type { Plugin } from '../types';
-import isPlainObject from 'lodash.isplainobject';
+
+const isPlainObject = (value: unknown): value is Record<string, unknown> => {
+  if (Object.prototype.toString.call(value) !== '[object Object]') {
+    return false;
+  }
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === null || prototype === Object.prototype;
+};
 
 /**
  * Check if a value can be serialized (e.g. using `JSON.stringify`).

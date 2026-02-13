@@ -19,7 +19,7 @@ boardgame.io captures game state in two objects: `G` and `ctx`.
 ```
 
 These state objects are passed around everywhere and maintained
-on both client and server seamlessly. The state in `ctx` is
+seamlessly by the engine. The state in `ctx` is
 incrementally adoptable, meaning that you can manage all the
 state manually in `G` if you so desire.
 
@@ -27,7 +27,7 @@ state manually in `G` if you so desire.
 can take advantage of, including support for game phases and complex
 turn orders.
 
-!> Because state can be sent between client and server,
+!> Because state is serialized as part of the game loop,
 `G` must be a JSON-serializable object; in particular, it must
 not contain classes or functions.
 

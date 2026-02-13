@@ -7,15 +7,39 @@
  */
 
 import type { ProcessGameConfig } from '../../core/game';
-import type { TransportData } from '../../master/master';
+import type { Operation } from 'rfc6902';
 import type {
   Game,
   PlayerID,
   CredentialedActionShape,
   State,
   SyncInfo,
+  LogEntry,
+  FilteredMetadata,
   ChatMessage,
 } from '../../types';
+
+export type TransportData =
+  | {
+      type: 'sync';
+      args: [string, SyncInfo];
+    }
+  | {
+      type: 'update';
+      args: [string, State, LogEntry[]];
+    }
+  | {
+      type: 'patch';
+      args: [string, number, number, Operation[], LogEntry[]];
+    }
+  | {
+      type: 'matchData';
+      args: [string, FilteredMetadata];
+    }
+  | {
+      type: 'chat';
+      args: [string, ChatMessage];
+    };
 
 export type MetadataCallback = (metadata: SyncInfo['filteredMetadata']) => void;
 

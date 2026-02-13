@@ -50,7 +50,7 @@ A plugin is an object that contains the following fields.
   // Function that allows the plugin to indicate that it
   // should not be run on the client. If it returns true,
   // the client will discard the state update and wait
-  // for the master instead.
+  // for the next confirmed update instead.
   noClient: ({ G, ctx, game, data, api }) => boolean,
 
   // Function that allows the plugin to indicate that the

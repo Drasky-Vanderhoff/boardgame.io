@@ -140,11 +140,8 @@ phases: {
 };
 ```
 
-?> Hooks like `onBegin` and `onEnd` are run only on the server in
-multiplayer games. Moves, on the other hand, run on both client
-and server. They are run on the client in order to facilitate
-a lag-free experience, and are run on the server to calculate the
-authoritative game state.
+?> Hooks like `onBegin` and `onEnd`, just like moves, should stay
+deterministic and side-effect free so state updates are reproducible.
 
 ### Moving between Phases
 

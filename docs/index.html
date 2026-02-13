@@ -43,8 +43,6 @@
       <span class="web-only">
         •
         <a href="/documentation/#/CHANGELOG">Changelog</a>
-        •
-        <a href="/documentation/#/notable_projects">Projects</a>
       </span>
     </nav>
 
@@ -52,21 +50,16 @@
       <p id="summary">
       Write simple functions that describe how the game state changes
       when a particular move is made. This is automatically converted
-      into a playable game complete with online multiplayer
-      features, all without requiring you to write a single line of
-      networking or storage code.
+      into a playable game with React rendering, AI bots,
+      plugins, and deterministic state transitions.
       </p>
 
       <h2>Features</h2>
 
       <div id="features">
       <div>
-        <h3>State Management</h3>
-        <div>Game state is managed seamlessly across clients, server and storage.</div>
-      </div>
-      <div>
-        <h3>Multiplayer</h3>
-        <div>Game state is kept in sync in realtime and across platforms.</div>
+        <h3>Game Engine Core</h3>
+        <div>Deterministic move and event processing for turn-based games.</div>
       </div>
       <div>
         <h3>AI</h3>
@@ -77,10 +70,6 @@
         <div>with different game rules and turn orders per phase.</div>
       </div>
       <div>
-        <h3>Lobby</h3>
-        <div>Player matchmaking and game creation.</div>
-      </div>
-      <div>
         <h3>Prototyping</h3>
         <div>Interface to simulate moves even before you render the game.</div>
       </div>
@@ -89,8 +78,8 @@
         <div>Plugin system that allows creating new abstractions.</div>
       </div>
       <div>
-        <h3>View-layer Agnostic</h3>
-        <div>Use the vanilla JS client or the bindings for React.</div>
+        <h3>React Client</h3>
+        <div>Use the React bindings to connect game logic and board components.</div>
       </div>
       <div>
         <h3>Logs</h3>
@@ -101,7 +90,7 @@
       <h2>Installation</h2>
 
       <code>
-      npm install boardgame.io
+      bun add boardgame.io
       </code>
 
       <h2>License</h2>

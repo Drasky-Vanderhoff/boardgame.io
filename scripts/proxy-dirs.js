@@ -33,5 +33,3 @@ function makeSubpackage(name, opts) {
 subpackages.forEach((name) => {
   makeSubpackage(name, { mainDir: 'cjs', esmDir: 'esm' });
 });
-
-makeSubpackage('server', { mainDir: 'cjs' });

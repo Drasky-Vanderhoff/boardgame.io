@@ -11,10 +11,9 @@ This poses interesting challenges regarding the implementation.
   needs to be controlled in order for allowing games that can be replayed exactly (e.g. for AI purposes).
 
 - **<abbr title="Pseudo-Random Number Generator">PRNG</abbr> State**.
-  The game runs on both the server and client.
-  All code and data on the client can be viewed and used to a player's advantage.
-  If a client could predict the next random numbers that are to be generated, the future flow of a game stops being unpredictable.
-  The library must not allow such a scenario. The RNG and its state must stay on the server.
+  Random outcomes must still be deterministic for replayability and AI analysis.
+  The random plugin keeps its PRNG state inside game/plugin state so repeated runs
+  with the same seed and actions produce the same results.
 
 - **Pure Functions**. The library is built using Redux. This is important for games since each move is a [reducer](https://redux.js.org/docs/basics/Reducers.html),
   and thus must be pure. Calling `Math.random()` and other functions that

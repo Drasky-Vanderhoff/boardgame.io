@@ -7,23 +7,19 @@
  */
 
 import { nanoid } from 'nanoid/non-secure';
-import 'svelte';
 import type { Dispatch, StoreEnhancer } from 'redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import * as Actions from '../core/action-types';
 import * as ActionCreators from '../core/action-creators';
 import { ProcessGameConfig } from '../core/game';
-import type Debug from './debug/Debug.svelte';
 import {
   CreateGameReducer,
   TransientHandlingMiddleware,
 } from '../core/reducer';
 import { InitializeGame } from '../core/initialize';
 import { PlayerView } from '../plugins/main';
-import type { Transport, TransportOpts } from './transport/transport';
+import type { Transport, TransportData, TransportOpts } from './transport/transport';
 import { DummyTransport } from './transport/dummy';
-import { ClientManager } from './manager';
-import type { TransportData } from '../master/master';
 import type {
   ActivePlayersArg,
   ActionShape,
@@ -50,15 +46,10 @@ type Action =
 
 export interface DebugOpt {
   target?: HTMLElement;
-  impl?: typeof Debug;
+  impl?: unknown;
   collapseOnLoad?: boolean;
   hideToggleButton?: boolean;
 }
-
-/**
- * Global client manager instance that all clients register with.
- */
-const GlobalClientManager = new ClientManager();
 
 /**
  * Standardise the passed playerID, using currentPlayer if appropriate.
@@ -149,7 +140,6 @@ export class _ClientImpl<
   private _running: boolean;
   private subscribers: Record<string, (state: State<G> | null) => void>;
   private transport: Transport;
-  private manager: ClientManager;
   readonly debugOpt?: DebugOpt | boolean;
   readonly game: ReturnType<typeof ProcessGameConfig>;
   readonly store: Store;
@@ -191,7 +181,6 @@ export class _ClientImpl<
     this.credentials = credentials;
     this.multiplayer = multiplayer;
     this.debugOpt = debug;
-    this.manager = GlobalClientManager;
     this.gameStateOverride = null;
     this.subscribers = {};
     this._running = false;
@@ -319,10 +308,12 @@ export class _ClientImpl<
       LogMiddleware
     );
 
-    enhancer =
-      enhancer !== undefined ? compose(middleware, enhancer) : middleware;
+    const finalEnhancer =
+      enhancer !== undefined
+        ? (compose(middleware, enhancer) as StoreEnhancer)
+        : (middleware as StoreEnhancer);
 
-    this.store = createStore(this.reducer, this.initialState, enhancer);
+    this.store = createStore(this.reducer, this.initialState, finalEnhancer);
 
     if (!multiplayer) multiplayer = DummyTransport;
     this.transport = multiplayer({
@@ -423,13 +414,11 @@ export class _ClientImpl<
   start() {
     this.transport.connect();
     this._running = true;
-    this.manager.register(this);
   }
 
   stop() {
     this.transport.disconnect();
     this._running = false;
-    this.manager.unregister(this);
   }
 
   subscribe(fn: (state: ClientState<G>) => void) {

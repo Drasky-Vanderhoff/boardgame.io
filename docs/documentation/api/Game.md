@@ -120,8 +120,7 @@
     ...
   },
 
-  // The minimum and maximum number of players supported
-  // (This is only enforced when using the Lobby server component.)
+  // The minimum and maximum number of players supported.
   minPlayers: 1,
   maxPlayers: 4,
 
@@ -136,7 +135,7 @@
   // Disable undo feature for all the moves in the game
   disableUndo: true,
 
-  // Transfer delta state with JSON Patch in multiplayer
+  // Transfer delta state with JSON Patch for incremental updates.
   deltaState: true,
 }
 ```

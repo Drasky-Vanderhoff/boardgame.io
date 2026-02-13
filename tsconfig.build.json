@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationMap": false,
+    "outDir": "./dist/types",
+    "rootDir": "./",
+    "noEmit": false,
+    "allowJs": true
+  },
+  "include": ["src/**/*", "packages/**/*"],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.test.js",
+    "integration/**",
+    "examples/**",
+    "docs/**",
+    "benchmark/**",
+    "reports/**"
+  ]
+}

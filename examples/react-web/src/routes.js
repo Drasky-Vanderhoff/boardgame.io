@@ -11,10 +11,8 @@ import chess from './chess';
 import secret_state from './secret-state';
 import random from './random';
 import threejs from './threejs';
-import lobby from './lobby';
 import simulator from './simulator';
 import redacted_move from './redacted-move';
-import undo from './undo';
 
 const routes = [
   {
@@ -42,16 +40,8 @@ const routes = [
     routes: redacted_move.routes,
   },
   {
-    name: 'Undo',
-    routes: undo.routes,
-  },
-  {
     name: 'Other Frameworks',
     routes: threejs.routes,
-  },
-  {
-    name: 'Lobby',
-    routes: lobby.routes,
   },
 ];
 

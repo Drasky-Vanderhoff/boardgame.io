@@ -2,12 +2,13 @@
 
 This tutorial walks through a simple game of Tic-Tac-Toe.
 
-?> We’re going to be running commands from a terminal and using Node.js/npm.
+?> We’re going to be running commands from a terminal using Node.js and Bun.
    If you haven’t done that before, you might want to read [an introduction to the command line][cmd]
-   and follow [the instructions on how to install Node][node]. You’ll also want
+   and follow [the instructions on how to install Node][node] and [Bun][bun]. You’ll also want
    a text editor to write code in like [VS Code][vsc] or [Atom][atom].
 
 [node]: https://nodejs.dev/learn/how-to-install-nodejs
+[bun]: https://bun.sh/docs/installation
 [cmd]: https://tutorial.djangogirls.org/en/intro_to_command_line/
 [vsc]: https://code.visualstudio.com/
 [atom]: https://atom.io/
@@ -35,20 +36,20 @@ Let’s create a new Node project from the command line:
 ```
 mkdir bgio-tutorial
 cd bgio-tutorial
-npm init --yes
+bun init -y
 ```
 
 ?> These commands will make a new directory called `bgio-tutorial`,
    change to that directory, and initialise a new Node package.
-   [Read more in the Node Package Manager docs.][pkgjson]
+   [Read more in the Bun package manager docs.][pkgjson]
 
-[pkgjson]: https://docs.npmjs.com/creating-a-package-json-file#creating-a-default-packagejson-file
+[pkgjson]: https://bun.sh/docs/runtime/package-manager
 
 We’re going to add boardgame.io and also Parcel to help us build our app:
 
 ```
-npm install boardgame.io
-npm install --save-dev parcel-bundler
+bun add boardgame.io
+bun add --dev parcel-bundler
 ```
 
 
@@ -82,7 +83,7 @@ Your project directory should now look like this:
     bgio-tutorial/
     ├── index.html
     ├── node_modules/
-    ├── package-lock.json
+    ├── bun.lock
     ├── package.json
     └── src/
         ├── App.js
@@ -96,13 +97,12 @@ and play around with it on CodeSandbox:<br/><br/>
 
 ### **React**
 
-We’ll use the [create-react-app](https://create-react-app.dev/)
-command line tool to initialize our React app and then add boardgame.io to it.
+We’ll use [Vite](https://vite.dev/) to initialize our React app and then add boardgame.io to it.
 
 ```
-npx create-react-app bgio-tutorial
+bun create vite bgio-tutorial --template react
 cd bgio-tutorial
-npm install boardgame.io
+bun add boardgame.io
 ```
 
 While we’re here, let’s also create an empty JavaScript file for our game code:
@@ -207,7 +207,7 @@ indicate the browsers we want to support:
 You can now serve the app from the command line by running:
 
 ```
-npm start
+bun run start
 ```
 
 ### **React**
@@ -226,7 +226,7 @@ export default App;
 You can now serve the app from the command line by running:
 
 ```
-npm start
+bun run dev
 ```
 
 <!-- tabs:end -->

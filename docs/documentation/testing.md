@@ -142,37 +142,6 @@ it ('rolls a six', () => {
 });
 ```
 
-### Multiplayer Tests
-
-Use the local multiplayer mode to simulate multiplayer interactions
-in unit tests.
-
-```js
-it('multiplayer test', () => {
-  const spec = {
-    game: MyGame,
-    multiplayer: Local(),
-  };
-
-  const p0 = Client({ ...spec, playerID: '0' });
-  const p1 = Client({ ...spec, playerID: '1' });
-
-  p0.start();
-  p1.start();
-
-  p0.moves.moveA();
-  p0.events.endTurn();
-
-  // Player 1's state reflects the moves made by Player 0.
-  expect(p1.getState()).toEqual(...);
-
-  p1.moves.moveA();
-  p1.events.endTurn();
-
-  ...
-});
-```
-
 ### Integration Tests
 
 Test the application end-to-end from the UI layer's point of view.

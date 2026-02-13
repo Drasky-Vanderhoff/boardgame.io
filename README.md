@@ -16,49 +16,50 @@
 </p>
 
 <p align="center">
-  <strong>boardgame.io</strong> is an engine for creating turn-based games using JavaScript.
+  <strong>boardgame.io</strong> is a React-first engine for creating turn-based games with JavaScript.
 </p>
 
-Write simple functions that describe how the game state changes
-when a particular move is made. This is automatically converted
-into a playable game complete with online multiplayer
-features, all without requiring you to write a single line of
-networking or storage code.
+Write simple functions that describe how the game state changes when a move is made.
+Use the client and React bindings to render boards, apply moves, run events, and integrate AI bots.
 
 ### Features
 
-- **State Management**: Game state is managed seamlessly across clients, server and storage automatically.
-- **Multiplayer**: Game state is kept in sync in realtime and across platforms.
-- **AI**: Automatically generated bots that can play your game.
-- **Game Phases**: with different game rules and turn orders per phase.
-- **Lobby**: Player matchmaking and game creation.
-- **Prototyping**: Interface to simulate moves even before you render the game.
-- **Extendable**: Plugin system that allows creating new abstractions.
-- **View-layer Agnostic**: Use the vanilla JS client or the bindings for React / React Native.
-- **Logs**: Game logs with the ability to time travel (viewing the board at an earlier state).
+- **Game Engine Core**: Deterministic move/event processing with phase and turn-order support.
+- **React Client**: Compose your game with `Client({ game, board })` from `boardgame.io/react`.
+- **AI**: Built-in bot utilities including random and MCTS bots.
+- **Plugins**: Extend behavior via plugin hooks and APIs.
+- **Testing Helpers**: Utilities for deterministic randomness in tests.
 
 ## Usage
 
 ### Installation
 
 ```sh
-npm install boardgame.io
+bun add boardgame.io
 ```
 
 ### Documentation
 
 Read our [Full Documentation](https://boardgame.io/documentation/) to learn how to
 use boardgame.io, and join the [community on gitter](https://gitter.im/boardgame-io/General)
-to ask your questions!
+to ask your questions.
 
-### Running examples in this repository
+### Running checks in this repository
 
 ```sh
-npm install
-npm start
+bun install
+bun run ts
+bun run test
+bun run build
 ```
 
-The examples can be found in the [examples](examples/) folder.
+### Integration sample in this repository
+
+```sh
+bun run test:integration
+```
+
+This validates a React tic-tac-toe app in `/integration` against the current package.
 
 #### Using VS Code?
 
@@ -70,23 +71,22 @@ See [changelog](docs/documentation/CHANGELOG.md).
 
 ## Get involved
 
-We welcome contributions of all kinds!
+We welcome contributions of all kinds.
 Please take a moment to review our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-🐛 **Found a bug?**  
+🐛 **Found a bug?**
 Let us know by [creating an issue][new-issue].
 
-❓ **Have a question?**  
+❓ **Have a question?**
 Our [Gitter channel][gitter] and [GitHub Discussions][discussions]
 are good places to start.
 
-⚙️ **Interested in fixing a [bug][bugs] or adding a [feature][features]?**  
+⚙️ **Interested in fixing a [bug][bugs] or adding a [feature][features]?**
 Check out the [contributing guidelines](CONTRIBUTING.md)
 and the [project roadmap](roadmap.md).
 
-📖 **Can we improve [our documentation][docs]?**  
-Pull requests even for small changes can be helpful. Each page in the
-docs can be edited by clicking the “Edit on GitHub” link at the top right.
+📖 **Can we improve [our documentation][docs]?**
+Pull requests even for small changes can be helpful.
 
 [new-issue]: https://github.com/boardgameio/boardgame.io/issues/new/choose
 [gitter]: https://gitter.im/boardgame-io/General

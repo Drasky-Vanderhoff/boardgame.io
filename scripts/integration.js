@@ -1,18 +1,21 @@
 const shell = require('shelljs');
 
+shell.set('-e');
+
 shell.rm('-rf', 'dist');
-shell.exec('npm pack');
+shell.exec('bun pm pack');
 const packed = shell.ls('./boardgame.io-*.tgz').stdout.trim();
 
 shell.mv(packed, 'integration');
 shell.cd('integration');
-shell.rm('-rf', 'node_modules');
-shell.exec('npm install');
-shell.exec(`npm install ${packed}`);
+shell.rm('-rf', 'node_modules', 'package-lock.json', 'bun.lock');
+shell.mkdir('-p', 'node_modules');
+shell.exec(`tar -xzf ${packed} -C node_modules`);
+if (shell.test('-d', 'node_modules/package')) {
+  shell.mv('node_modules/package', 'node_modules/boardgame.io');
+}
 shell.rm(packed);
 
-shell.set('-e');
-
 // Test
-shell.exec('npm test');
-shell.exec('npm run build');
+shell.exec('bun run test');
+shell.exec('bun run build');

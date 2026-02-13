@@ -1,5 +1,4 @@
 import type { Object } from 'ts-toolbelt';
-import type Koa from 'koa';
 import type { Store as ReduxStore } from 'redux';
 import type * as ActionCreators from './core/action-creators';
 import type { ActionErrorType, UpdateErrorType } from './core/errors';
@@ -7,13 +6,10 @@ import type { Flow } from './core/flow';
 import type { CreateGameReducer } from './core/reducer';
 import type { INVALID_MOVE } from './core/constants';
 import type { GameMethod } from './core/game-methods';
-import type { Auth } from './server/auth';
-import type * as StorageAPI from './server/db/base';
 import type { EventsAPI } from './plugins/plugin-events';
 import type { LogAPI } from './plugins/plugin-log';
 import type { RandomAPI } from './plugins/random/random';
 import type { Operation } from 'rfc6902';
-export type { StorageAPI };
 
 export type AnyFn = (...args: any[]) => any;
 
@@ -369,65 +365,6 @@ export type Undo<G extends any = any> = {
   moveType?: string;
   playerID?: PlayerID;
 };
-
-export namespace Server {
-  export type GenerateCredentials = (
-    ctx: Koa.DefaultContext
-  ) => Promise<string> | string;
-
-  export type AuthenticateCredentials = (
-    credentials: string,
-    playerMetadata: PlayerMetadata
-  ) => Promise<boolean> | boolean;
-
-  export type PlayerMetadata = {
-    id: number;
-    name?: string;
-    credentials?: string;
-    data?: any;
-    isConnected?: boolean;
-  };
-
-  export interface MatchData {
-    gameName: string;
-    players: { [id: number]: PlayerMetadata };
-    setupData?: any;
-    gameover?: any;
-    nextMatchID?: string;
-    unlisted?: boolean;
-    createdAt: number;
-    updatedAt: number;
-  }
-
-  export type AppCtx = Koa.DefaultContext & {
-    db: StorageAPI.Async | StorageAPI.Sync;
-    auth: Auth;
-  };
-
-  export type App = Koa<Koa.DefaultState, AppCtx>;
-}
-
-export namespace LobbyAPI {
-  export type GameList = string[];
-  type PublicPlayerMetadata = Omit<Server.PlayerMetadata, 'credentials'>;
-  export type Match = Omit<Server.MatchData, 'players'> & {
-    matchID: string;
-    players: PublicPlayerMetadata[];
-  };
-  export interface MatchList {
-    matches: Match[];
-  }
-  export interface CreatedMatch {
-    matchID: string;
-  }
-  export interface JoinedMatch {
-    playerID: string;
-    playerCredentials: string;
-  }
-  export interface NextMatch {
-    nextMatchID: string;
-  }
-}
 
 export type Reducer = ReturnType<typeof CreateGameReducer>;
 export type Store = ReduxStore<State, ActionShape.Any>;

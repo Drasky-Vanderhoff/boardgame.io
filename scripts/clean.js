@@ -11,4 +11,3 @@ const subpackages = require('../subpackages');
 
 shell.rm('-rf', 'dist');
 shell.rm('-rf', subpackages);
-shell.rm('-rf', 'server');

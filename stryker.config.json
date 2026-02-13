@@ -1,14 +1,16 @@
 {
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
-  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information.",
+  "_comment": "Mutation testing for the client-only React/core engine codebase.",
   "packageManager": "npm",
   "reporters": ["html", "clear-text", "progress"],
-  "testRunner": "jest",
-  "testRunner_comment": "Take a look at https://stryker-mutator.io/docs/stryker-js/jest-runner for information about the jest plugin.",
+  "testRunner": "vitest",
+  "vitest": {
+    "configFile": "vite.config.ts"
+  },
   "coverageAnalysis": "perTest",
   "mutate": [
-    "{src,lib}/**/!(*.+(s|S)pec|*.+(t|T)est).+(cjs|mjs|js|ts|mts|cts|jsx|tsx|html|vue|svelte)",
-    "!{src,lib}/**/*.test.+(cjs|mjs|js|ts|mts|cts|jsx|tsx|html|vue|svelte)",
-    "!{scripts,python,examples,integration,docs,packages,node_modules,benchmark,.github,.devcontainer}/*"
+    "{src,lib}/**/!(*.+(s|S)pec|*.+(t|T)est).+(cjs|mjs|js|ts|mts|cts|jsx|tsx)",
+    "!{src,lib}/**/*.test.+(cjs|mjs|js|ts|mts|cts|jsx|tsx)",
+    "!{scripts,examples,integration,docs,packages,node_modules,benchmark,.github,.devcontainer}/*"
   ]
 }
