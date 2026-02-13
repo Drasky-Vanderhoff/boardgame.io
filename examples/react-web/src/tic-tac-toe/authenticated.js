@@ -8,71 +8,38 @@
 
 import React from 'react';
 import { Client } from 'boardgame.io/react';
-import { SocketIO } from 'boardgame.io/multiplayer';
+import { SocketIO } from '../local-multiplayer';
 import TicTacToe from './game';
 import Board from './board';
 import PropTypes from 'prop-types';
-import request from 'superagent';
 
-const hostname = window.location.hostname;
 const App = Client({
   game: TicTacToe,
   board: Board,
   debug: false,
-  multiplayer: SocketIO({ server: `${hostname}:8000` }),
+  multiplayer: SocketIO(),
 });
 
 class AuthenticatedClient extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      matchID: 'matchID',
+      matchID: 'authenticated-local',
       players: {
         0: {
-          credentials: 'credentials',
+          credentials: 'player-0',
         },
         1: {
-          credentials: 'credentials',
+          credentials: 'player-1',
         },
       },
     };
   }
 
-  async componentDidMount() {
-    const gameName = 'tic-tac-toe';
-    const PORT = 8000;
-
-    const newGame = await request
-      .post(`http://${hostname}:${PORT}/games/${gameName}/create`)
-      .send({ numPlayers: 2 });
-
-    const matchID = newGame.body.matchID;
-
-    let playerCredentials = [];
-
-    for (let playerID of [0, 1]) {
-      const player = await request
-        .post(`http://${hostname}:${PORT}/games/${gameName}/${matchID}/join`)
-        .send({
-          gameName,
-          playerID,
-          playerName: playerID.toString(),
-        });
-
-      playerCredentials.push(player.body.playerCredentials);
-    }
-
-    this.setState({
-      matchID,
-      players: {
-        0: {
-          credentials: playerCredentials[0],
-        },
-        1: {
-          credentials: playerCredentials[1],
-        },
-      },
-    });
+  componentDidMount() {
+    console.debug(
+      '[examples] Authenticated example uses local transport in this client-only branch.'
+    );
   }
 
   onPlayerCredentialsChange(playerID, credentials) {
@@ -111,8 +78,8 @@ class AuthenticatedExample extends React.Component {
         <h1>Authenticated</h1>
 
         <p>
-          Change the credentials of a player, and you will notice that the
-          server no longer accepts moves from that client.
+          Change the credentials to simulate identity changes while using the
+          local transport.
         </p>
 
         <div className="runner">

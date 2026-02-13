@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { Client } from 'boardgame.io/react';
-import { Local } from 'boardgame.io/multiplayer';
+import { Local } from '../local-multiplayer';
 import All from './example-all';
 import AllOnce from './example-all-once';
 import Others from './example-others';

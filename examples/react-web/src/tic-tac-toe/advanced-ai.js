@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import { Client as PlainJSClient } from 'boardgame.io/client';
 import { Client } from 'boardgame.io/react';
-import { Local } from 'boardgame.io/multiplayer';
+import { Local } from '../local-multiplayer';
 import { MCTSBot, Step } from 'boardgame.io/ai';
 import TicTacToe from './game';
 import Board from './board';

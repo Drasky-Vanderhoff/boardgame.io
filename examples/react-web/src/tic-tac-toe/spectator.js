@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { Client } from 'boardgame.io/react';
-import { SocketIO } from 'boardgame.io/multiplayer';
+import { SocketIO } from '../local-multiplayer';
 import TicTacToe from './game';
 import Board from './board';
 
